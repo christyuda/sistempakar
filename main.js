@@ -75,14 +75,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     const diagnosis = checkSymptom(selectedOptions);
 
-    // Menampilkan modal box dengan menghapus kelas "hidden" pada elemen modal
     modalElement.classList.remove("hidden");
 
-    // Menampilkan diagnosis pada elemen modal
     modalElement.querySelector("#result").textContent = diagnosis;
   });
 
-  // Menambahkan event listener pada tombol "Tutup" di dalam modal untuk menyembunyikan modal
   modalElement.querySelector(".modal-close").addEventListener("click", function () {
     modalElement.classList.add("hidden");
   });
