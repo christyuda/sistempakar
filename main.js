@@ -51,15 +51,15 @@ function checkSymptom(listSymntom) {
     }
 };
 
-document.getElementById('submitBtn').addEventListener('click', function () {
-  const answers = [];
-  for (let i = 1; i <= 15; i++) {
-    const selectElement = document.getElementById('question' + i);
-    const answer = selectElement.value;
-    answers.push(answer);
-  }
-
-  const diagnosis = checkSymptom(answers);
-
-  document.getElementById('result').textContent = diagnosis;
-});
+document.getElementById("submitBtn").addEventListener("click", function () {
+    const selectedOptions = [];
+    for (let i = 1; i <= 15; i++) {
+      const selectElement = document.getElementById("question" + i);
+      const selectedValue = selectElement.value;
+      if (selectedValue === "iya") {
+        selectedOptions.push(i);
+      }
+    }
+    const diagnosis = checkSymptom(selectedOptions);
+    document.getElementById("result").textContent = diagnosis;
+  });
