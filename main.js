@@ -38,18 +38,20 @@ function checkSymptom(listSymptom) {
   const hasClusterHeadache = listSymptom.filter(symptom => ClusterHeadacheSymptom.includes(symptom)).length >= 6;
 
   function checkSymptom(listSymptom) {
-    listSymptom.sort((a, b) => a - b);
-    
-    if (arraysEqual(listSymptom, MigrainSymptom)){
+    const migrainCount = listSymptom.filter(symptom => MigrainSymptom.includes(symptom)).length;
+    const tensionHeadacheCount = listSymptom.filter(symptom => TensionHeadacheSymptom.includes(symptom)).length;
+    const clusterHeadacheCount = listSymptom.filter(symptom => ClusterHeadacheSymptom.includes(symptom)).length;
+  
+    if (migrainCount >= 6 && tensionHeadacheCount === 0 && clusterHeadacheCount === 0) {
       return "Kamu mengalami Sakit Kepala dengan Jenis Migrain";
-    } else if (arraysEqual(listSymptom, TensionHeadacheSymptom)) {
+    } else if (tensionHeadacheCount >= 6 && migrainCount === 0 && clusterHeadacheCount === 0) {
       return "Kamu mengalami Sakit Kepala dengan jenis Sakit Kepala Tegang";
-    } else if (arraysEqual(listSymptom, ClusterHeadacheSymptom)) {
+    } else if (clusterHeadacheCount >= 6 && migrainCount === 0 && tensionHeadacheCount === 0) {
       return "Kamu mengalami Sakit Kepala dengan jenis Sakit Kepala Cluster";
     } else if (listSymptom.length === 0) {
-      return "Kamu tidak mengalami gejala sakit kepala";
+      return "Kamu belum memilih gejala apa pun. Silakan pilih setidaknya satu gejala.";
     } else {
-      return "Kamu mengalami Sakit Kepala, tetapi kami tidak memiliki data tentang jenis sakit kepala tersebut.";
+      return "Kamu mengalami gejala sakit kepala, namun tidak termasuk dalam jenis yang telah ditentukan.";
     }
   }
   
