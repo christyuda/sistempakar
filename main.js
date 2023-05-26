@@ -33,9 +33,9 @@ function arraysEqual(a, b) {
     return true;
 }
 function checkSymptom(listSymptom) {
-  const hasMigrain = listSymptom.some(symptom => MigrainSymptom.includes(symptom));
-  const hasTensionHeadache = listSymptom.some(symptom => TensionHeadacheSymptom.includes(symptom));
-  const hasClusterHeadache = listSymptom.some(symptom => ClusterHeadacheSymptom.includes(symptom));
+  const hasMigrain = listSymptom.filter(symptom => MigrainSymptom.includes(symptom)).length >= 6;
+  const hasTensionHeadache = listSymptom.filter(symptom => TensionHeadacheSymptom.includes(symptom)).length >= 6;
+  const hasClusterHeadache = listSymptom.filter(symptom => ClusterHeadacheSymptom.includes(symptom)).length >= 6;
 
   if (hasMigrain && hasTensionHeadache && hasClusterHeadache) {
     return "Kamu mengalami gejala yang termasuk dalam jenis Migrain, Tension Headache, dan Cluster Headache.";
@@ -57,6 +57,7 @@ function checkSymptom(listSymptom) {
     return "Kamu mengalami gejala sakit kepala, namun tidak termasuk dalam jenis yang telah ditentukan.";
   }
 }
+
 
 
 
