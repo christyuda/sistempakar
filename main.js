@@ -37,27 +37,22 @@ function checkSymptom(listSymptom) {
   const hasTensionHeadache = listSymptom.filter(symptom => TensionHeadacheSymptom.includes(symptom)).length >= 6;
   const hasClusterHeadache = listSymptom.filter(symptom => ClusterHeadacheSymptom.includes(symptom)).length >= 6;
 
-  if (hasMigrain && hasTensionHeadache && hasClusterHeadache) {
-    return "Kamu mengalami gejala yang termasuk dalam jenis Migrain, Tension Headache, dan Cluster Headache.";
-  } else if (hasMigrain && hasTensionHeadache) {
-    return "Kamu mengalami gejala yang termasuk dalam jenis Migrain dan Tension Headache.";
-  } else if (hasMigrain && hasClusterHeadache) {
-    return "Kamu mengalami gejala yang termasuk dalam jenis Migrain dan Cluster Headache.";
-  } else if (hasTensionHeadache && hasClusterHeadache) {
-    return "Kamu mengalami gejala yang termasuk dalam jenis Tension Headache dan Cluster Headache.";
-  } else if (hasMigrain) {
-    return "Kamu mengalami Sakit Kepala dengan Jenis Migrain";
-  } else if (hasTensionHeadache) {
-    return "Kamu mengalami Sakit Kepala dengan jenis Sakit Kepala Tegang";
-  } else if (hasClusterHeadache) {
-    return "Kamu mengalami Sakit Kepala dengan jenis Sakit Kepala Cluster";
-  } else if (listSymptom.length === 0) {
-    return "Kamu belum memilih gejala apa pun. Silakan pilih setidaknya satu gejala.";
-  } else {
-    return "Kamu mengalami gejala sakit kepala, namun tidak termasuk dalam jenis yang telah ditentukan.";
+  function checkSymptom(listSymptom) {
+    listSymptom.sort((a, b) => a - b);
+    
+    if (arraysEqual(listSymptom, MigrainSymptom)){
+      return "Kamu mengalami Sakit Kepala dengan Jenis Migrain";
+    } else if (arraysEqual(listSymptom, TensionHeadacheSymptom)) {
+      return "Kamu mengalami Sakit Kepala dengan jenis Sakit Kepala Tegang";
+    } else if (arraysEqual(listSymptom, ClusterHeadacheSymptom)) {
+      return "Kamu mengalami Sakit Kepala dengan jenis Sakit Kepala Cluster";
+    } else if (listSymptom.length === 0) {
+      return "Kamu tidak mengalami gejala sakit kepala";
+    } else {
+      return "Kamu mengalami Sakit Kepala, tetapi kami tidak memiliki data tentang jenis sakit kepala tersebut.";
+    }
   }
-}
-
+  
 
 
 
